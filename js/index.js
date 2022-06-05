@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.json())
         .then(data => {
             for(let i = 0; i < data.items.length; i++) {
-                console.log(data.items[i].login)
                 createUser(data.items[i].login)
             }  
         })
@@ -16,7 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     function createUser (user) {
-        let ol = document.createElement('ol');
-        ol.textContent = user;
-        document.getElementById('user-list').appendChild(ol)
+        let li = document.createElement('li');
+        li.textContent = user;
+        document.getElementById('user-list').appendChild(li)
+
+        li.addEventListener('click', () => {
+            let input = document.getElementById('search').value
+            console.log(input)
+            fetch(`https://api.github.com/users/${input}/repos`)
+            .then(res => json())
+            .then(data => console.log(data))
+        })
     }
