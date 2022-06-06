@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('user-list').appendChild(li)
 
         li.addEventListener('click', () => {
-            let input = document.getElementById('search').value
+            let list = document.getElementById('repos-list')
+            list.innerHTML = '';
             fetch(`https://api.github.com/users/${user}/repos`)
             .then(res => res.json())
             .then(data => {
