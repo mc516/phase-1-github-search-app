@@ -21,9 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         li.addEventListener('click', () => {
             let input = document.getElementById('search').value
-            console.log(input)
-            fetch(`https://api.github.com/users/${input}/repos`)
+            fetch(`https://api.github.com/users/${user}/repos`)
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+                data.forEach(repo => {
+                    let liRepo = document.createElement('li')
+                    liRepo.textContent = repo.url; 
+                    document.getElementById('repos-list').appendChild(liRepo)
+                })
+                
+            })
         })
     }
