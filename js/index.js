@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let input = document.getElementById('search').value
             console.log(input)
             fetch(`https://api.github.com/users/${input}/repos`)
-            .then(res => json())
+            .then(res => res.json())
             .then(data => console.log(data))
         })
     }
